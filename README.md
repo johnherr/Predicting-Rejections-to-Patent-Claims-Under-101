@@ -35,7 +35,8 @@ US-10148508-A|	US-2008253739-A1| 1| 0| 0| 1. A method….| US-9071730-B2| 1. A m
 
 1 . A computer implemented method for information editorial controls, wherein a program stored on a non-transitory computer-readable storage medium instructs a processor to perform the method comprising the steps of:
 * submitting at least one comment regarding an editorially-controlled content to be published with said editorially-controlled content, said published comment being authored by a contributing member of an online community;  
-* entering a rating of said published comment, said rating being determined by at least one reviewing member of said online community;   assigning points within a predefined range for ratings of said published comment that exceeds a predetermined level, said points being assigned to said contributing member by an editor of said online community in which said points identify subject matter expertise for said contributing member; and   
+* entering a rating of said published comment, said rating being determined by at least one reviewing member of said online community;   
+* assigning points within a predefined range for ratings of said published comment that exceeds a predetermined level, said points being assigned to said contributing member by an editor of said online community in which said points identify subject matter expertise for said contributing member; and   
 * receiving awarded points in which said awarded points received by said contributing member comprise said points capped by a maximum number assigned to said editorially-controlled content.   
      
          
