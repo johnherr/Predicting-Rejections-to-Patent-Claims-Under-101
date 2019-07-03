@@ -51,9 +51,11 @@ US-10148508-A|	US-2008253739-A1| 1| 0| 0| 1. A method….| US-9071730-B2| 1. A m
 After acquiring my cleaned data, I vectorized the claim data to use as my feature set. Words in each claim were lemmatized and tokenized to create term frequency matrices and TF-IDF (Term Frequency-Inverse Document Frequency matrices were created for both Train and test datasets). 
 
 # Principal Component Analysis (Assessing Data Structure)
-A little bit of PCA confirmed that there was some (weak) structure in the data. The two-dimensional plot below shows the two classes plotted along with the first two principal components. Given that 101 rejections are often  subjective, to begin with, I did not expect a clear delineation between the two classes.
+A little bit of PCA on my TF-IDF matrix confirmed that there was some (very weak) structure in the data. The two-dimensional plot below shows the two classes plotted along with the first two principal components. Given that 101 rejections are often  subjective, to begin with, I did not expect a clear delineation between the two classes. Ideally, though, the separation between classes would be more pronounced.
+
 ![](images/pca.png)
 
+First 3 principal axes:
 ![](images/3d_principal_pca.gif)
 
 
