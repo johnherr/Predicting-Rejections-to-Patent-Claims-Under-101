@@ -54,6 +54,8 @@ After acquiring my cleaned data, I vectorized the claim data to use as my featur
 A little bit of PCA confirmed that there was some (weak) structure in the data. The two-dimensional plot below shows the two classes plotted along with the first two principal components. Given that 101 rejections are often  subjective, to begin with, I did not expect a clear delineation between the two classes.
 ![](images/pca.png)
 
+![](images/3d_principal_pca.gif)
+
 
 # Naive Bayes Classifier
 ## Results on Initial Dataset
@@ -65,15 +67,15 @@ Here is a full breakdown:
 ![](images/confusion_matrix.png)
 
 
-|   |  Naive Bayes (using TF-IDF) |
-|:-:|---|
-| Accuracy | 68.3%  | 
-| Precision  |  69.4% |
-| Recall (TPR) |  65.0% |
+**_**|**Naive Bayes (using TF-IDF)**
+:-:|:-:
+Accuracy | 68.3%
+Precision  |  69.4%
+Recall (TPR) |  65.0%
 
 
 ## Most important features
-**Feature**|**abs(Coeficient)**
+**Feature**|**abs(Coefficient)**
 :-----:|:-----:
 of the plurality|5.9
 response to|5.88
@@ -98,19 +100,49 @@ be|5.59
 
 ## Model Optimization
 ### What proved to be useful
-1. Limiting the number of features when greating the TF or TF-IDF matrix. Initially, I had terrible results as many unimportant features were being used.  These additional features add noise and obsure the signal.  I found that ~150 features seemed optimal.
+- Limiting the number of features when creating the TF or TF-IDF matrix. Initially, I had terrible results, as many unimportant features were being used.  These additional features add noise and obscure the signal.  I found that ~150 features seemed optimal.
 - Lemetizing the words (~2% improvement in accuracy)
 - Adding ngrams (adding feature options for bigrams and trigrams improved accuracy ~3%)
 - Normalizing the TF-IDF matrix using the `l1 norm` (Manhattan Distance)
  
 
-### Areas I plan to improve upon
-1. Identifying appropriate 'stop words.'  Standard 'english' stopwords from `nltk` and `sklearn` did not prove to be helpful.
-- Generalize and test model in patents of other tech fields.
-
+### Areas for future Optimization
+- Adjusting the prediction threshold for classification to improve the TPR (looking at the ROC curve)
+- Identifying appropriate 'stop words.'  Standard 'english' stopwords from `nltk` and `sklearn` did not prove to be helpful. In patent claims I believe many standard stopwords such as 'a' and the 'the' are important. 
+- Using more features from the patent application such as application length, date of filing, number of figures, title, etc. 
 
    
-## Larger Dataset
+## Validation on Larger Dataset
+Without modifiying any model parameters.  I trained and ran the model on a larger dataset from all of the patents that were reviewed by  Technology Center 2100 (Computer Architecture Software and Information Security) during the same period.  In total, this larger dataset compsied of ~15,000 patents.  Since these applications represent patent applications assignedt to multiple art units that make up a technology cetenter within the USPTO, this is somewhat a test to see if the model might be more generalizable. 
 
-Having demonst
+![](images/confusion_matrix2.png)
 
+
+**_**|**Naive Bayes (using TF-IDF)**
+:-----:|:-----:
+Accuracy | 64.3%  
+Precision |  71.2%
+Recall (TPR) |  50.0%
+
+**Feature**|**Coefficient**
+:-----:|:-----:
+one of the|6.01
+of the plurality|5.97
+the at least|5.91
+the at|5.91
+associated with the|5.88
+response to|5.85
+the one or|5.85
+selected|5.83
+are|5.83
+stored|5.83
+each of|5.82
+the one|5.8
+being|5.77
+to be|5.76
+the user|5.75
+with a|5.73
+by a|5.72
+one of|5.71
+response|5.7
+having|5.7
