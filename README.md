@@ -55,7 +55,9 @@ A little bit of PCA on my TF-IDF matrix confirmed that there was some (very weak
 
 ![](images/pca.png)
 
-First 3 principal axes:
+First 3 principal axes: 
+
+
 ![](images/3d_principal_pca.gif)
 
 
