@@ -199,11 +199,11 @@ def get_top_vals(model, names, num=10):
     '''
     Returns the top words
     '''
-    indx = np.argsort(-np.abs(model.coef_))[0]
+    indx = np.argsort(model.coef_)[0][::-1] #largest to smallest
     names = np.array(names)
-    top_values = names[indx]
-    coef = (np.abs(model.coef_))[0][indx]
-    return top_values[:num],coef[:num]
+    ordered_values = names[indx 
+    coef = (model.coef_)[0][indx]
+    return ordered_values[:num],coef[:num]
 
 def print_confusion_matrix(confusion_matrix, class_names, figsize = (10,7), fontsize=18, save=False):
     """Prints a confusion matrix, as returned by sklearn.metrics.confusion_matrix, as a heatmap.

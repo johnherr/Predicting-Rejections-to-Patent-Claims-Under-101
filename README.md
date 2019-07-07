@@ -80,28 +80,29 @@ Recall (TPR) |  65.0%
 
 
 ## Most important features
-**Feature**|**abs(Coefficient)**
+**Feature**|**Log Probability**
 :-----:|:-----:
-of the plurality|5.9
-response to|5.88
-one of the|5.87
-via|5.79
-corresponding|5.71
-each of|5.71
-a second|5.7
-response|5.68
-being|5.67
-computing device|5.66
-the second|5.65
-the at|5.65
-the at least|5.65
-one of|5.63
-merchant|5.63
-on a|5.61
-interface|5.6
-account|5.6
-selected|5.6
-be|5.59
+be|-2.81
+selected|-3.07
+account|-3.56
+interface|-3.85
+on a|-4.04
+merchant|-4.24
+one of|-4.27
+the at least|-4.30
+the at|-4.36
+the second|-4.38
+computing device|-4.39
+being|-4.49
+response|-4.53
+a second|-4.55
+each of|-4.57
+corresponding|-4.58
+via|-4.58
+one of the|-4.60
+response to|-4.61
+of the plurality|-4.64
+
 
 ## Model Optimization
 ### What proved to be useful
@@ -128,26 +129,3 @@ Without modifiying any model parameters.  I trained and ran the model on a large
 Accuracy | 64.3%  
 Precision |  71.2%
 Recall (TPR) |  50.0%
-
-**Feature**|**Coefficient**
-:-----:|:-----:
-one of the|6.01
-of the plurality|5.97
-the at least|5.91
-the at|5.91
-associated with the|5.88
-response to|5.85
-the one or|5.85
-selected|5.83
-are|5.83
-stored|5.83
-each of|5.82
-the one|5.8
-being|5.77
-to be|5.76
-the user|5.75
-with a|5.73
-by a|5.72
-one of|5.71
-response|5.7
-having|5.7
