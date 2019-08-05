@@ -4,6 +4,8 @@
 
 **JOHN HERR | Galvanize Data Science Imersive | Spring 2019** 
 
+# Update Commming Shortly
+**I recently redid this project, making use of word embeddings and document embeddings. I will update this repository shortly to reflect the changes, but in the meantime, please check out the slides that were presented at the Galvanize capstone presentation.**
 
 # Background & Motivation
 In my previous career, I wrote and prosecuted patent applications for tech companies.  For those not familiar with intellectual property law, patents often go through a long and expensive prosecution process before a patent is granted, the Applicant abandons further attempts to patent their invention, or the Applicant appeals their case to the Patent Trial and Appeal Board. Patent examiners at the USPTO review patent applications under the patent laws which are described 35 U.S.C Code § 101, 102, 103, and 112.  Sections 102, 103, and 112  pertain to whether the invention is adequately disclosed in the patent application, and whether the invention is described  in or made obvious by prior art.  U.S.C  § 101 describes what constitutes patent-eligible and patent-ineligible subject matter
