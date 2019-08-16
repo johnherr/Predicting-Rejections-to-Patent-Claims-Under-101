@@ -8,7 +8,7 @@ prediction
 1. [Background & Motivation](#background)
     - [Example Claims](#claims)
 2. [Data](#data)
-    - [## Training Data and Test Data](#split)
+    - [Training Data and Test Data](#split)
 3. [Workflow](#workflow)
 4. [Vectorizing Claims](#vector)
     - [Word Embeddings](#word_embeddings)
