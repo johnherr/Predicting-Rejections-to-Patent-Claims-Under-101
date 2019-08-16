@@ -4,13 +4,30 @@ prediction
 
 **JOHN HERR | Galvanize Data Science Immersive | Spring 2019**
 
+## Table of Contents
+1. [Background & Motivation](#background)
+    - [Example Claims](#claims)
+2. [Data](#data)
+    - [## Training Data and Test Data](#split)
+3. [Workflow](#workflow)
+4. [Vectorizing Claims](#vector)
+    - [Word Embeddings](#word_embeddings)
+    - [Claim Embeddings](#claim_embeddings)
+5. [Principal Component Analysis](#pca)
+6. [Vectorized Features](#features)
+    - [Cluster Analysis](#cluster)
+7. [Random Forest Classifier](#randomforest)
+8. [Results](#results)
+    - [Use Cases](#use_cases)
 
-# Background & Motivation
+
+
+# Background & Motivation <a name="background"></a>
 In my previous career as a patent agent, I wrote and prosecuted patent applications for tech companies. After patents are written, they undergo a review process by patent examiners at the United States Patent & Trademark Office (USPTO). An examiner may issue a rejection of the patent application if they conclude that the claimed invention obvious in view of the prior art, that the claims are directed to include ineligble subject matter, or that the claims are not supported by the specification. After each rejection, the Applicant has a opportunity to ammend the claims to traverse the rejection or present arguments for why they believe the grounds for the rejection are invalid. Each back and forth may cost the  Applicant thousands of dollars and delay the time that the patent will be granted and becomes enforceable.
 
 **The goal of this project was to see if I could utilize machine learning techniques to predict whether a patent claim would be rejected under 35 United States Code § 101, a section of the law that provides criteria for patent-eligible subject matter.**  The code specifies that patents must fall under one of 4 categories: **(1)** a process, **(2)** a machine, **(3)** an (article of) manufacture, **(4)** or a composition of matter. The code further specifies that patents cannot be filed on laws of nature, natural phenomena, or abstract ideas. In recent years the Patent Office has struggled to clearly define criteria for determining whether claims are directed to an abstract idea. Conflicting court decisions have it difficult for practitioners to know what language will be deemed acceptable. Applicants often find themselves at the mercy of an examiner who is making the determination whether a claim is patent-eligible under 101. If a claim can be sufficiently narrowed by using precise language, a patent examiner may become comfortable in allowing the application.
 
-## Example Claims
+## Example Claims <a name="claims"></a>
 Patent claims define the scope of what is being claimed as the invention. While other aspects of a patent may describe the invention, the language used in a claim is what provides a patent owner protection of their invention. If a party infringes on a patent claim, the patent owner can seek infringement damages from the party and force the party from further infringement of the patent.
 
 Below is a randomly selected application (
@@ -34,7 +51,7 @@ Below is a randomly selected application (
   </tr>
 </table>
 
-# Data
+# Data <a name="data"></a>
 In late 2017, Google began hosting [Public Patent datasets](https://cloud.google.com/blog/products/gcp/google-patents-public-datasets-connecting-public-paid-and-private-patent-data) on BigQuery. In total, there are 19 datasets, which have been collected by various organizations.  These datasets can be queried using the  [BigQuery API](https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-install-python) for python. I collected Office Action data providing information on patent rejections from USPTO Digital Services & Big Data portfolio, and I pulled claim text from a dataset provided by IFI CLAIMS Patent Services. Since examination under § 101 has been evolving, I decided to limit my dataset to patent applications granted between 2015 and mid-2017.
 
 For each application in my dataset, I considered the first claim as originally filed, which was rejected under § 101, and the first claim as granted. The raw claim text was extracted using regular expressions.  After this initial cleaning and preprocessing step, I had a dataset with the following structure.
@@ -44,12 +61,12 @@ For each application in my dataset, I considered the first claim as originally f
 US-10148508-A|	US-2008253739-A1| 1| 0| 0| 1. A method….| US-9071730-B2| 1. A method…
 ...|
 
-## Training data and test data
+## Training Data and Test Data <a name="split"></a>
 I wanted to test my model on never seen before claims, so I first split the applications into a training set and a holdout test set. As each patent application that I considered had an originally filed claim that was rejected under § 101 and a claim that was eventually granted, both my training and test datasets where inherently balanced having an equal number of rejected and accepted claims.
 
 ![](images/data_split.png)
 
-# Workflow
+# Workflow <a name="workflow"></a>
 Now that you hopefully have a general understanding of the data and the problem I am trying to address, it seems appropriate to give a quick overview of the workflow that I used, which is illustrated below.
 
 ![](images/workflow.png)
@@ -58,10 +75,10 @@ First, raw patent text and was pulled using Google Big Query and the Python API.
 
 After pulling the raw claim text, I performed some data cleaning & preprocessing using `Pandas` and  `Numpy.` `Regex` commands were used to extract the first independent claim for each patent application.  Next, to extract features from the claims, I created a claim vector for each claim in the dataset using the Doc2Vec in the `gesim` module (more on this below).  Finally, after vectorizing the claim text, a Random Forrest Classifier was trained on the training data and used to predict whether claims the holdout test dataset would receive a rejection under § 101.
 
-# Vectorizing Claims
+# Vectorizing Claims <a name="vector"></a>
 Traditional approaches to natural language processing often involve counting the frequency of terms or phrases in a document.  This generally involves generating a term frequency matrix or a TF-IDF (term frequency inverse document frequency) matrix for each document in your dataset. While this straightforward approach has proven to be very useful for certain applications - this method suffers from two major pitfalls.  First, with the exception of using 'n-grams', where multiple words are considered as a single term, the ordering of words is lost. Second, this approach does not account for the semantic meaning of a word. In the first iteration of this project, I attempted this conventional approach but found that my model was only a little better than guessing. Having a mediocre baseline, I decided to try to make use of word embeddings.
 
-## Word Embeddings
+## Word Embeddings <a name="word_embeddings"></a>
 Word embeddings encode the semantic meaning of a word into a vector.  Words that have similar meanings will have similar vectors. Using the `Word2Vec` algorithm from 	`gensim`, semantic meaning can be learned by recognizing patterns in the words and phrases that come before and after use of the word.
 
 The diagram below shows the structure of the Word2Vec algorithm. The single hidden layer in the fully connected neural network includes linear neurons. The input layer and the output layer are set to have as many neurons as there are words in the vocabulary for training. The size of the hidden layer is set to the dimensionality of the resulting word vectors, and the weights of the 'W' matrix and 'W1' matrices are determined when training. The 'W' matrix includes the N-dimensional word vectors (or word embeddings), and the 'W1' matrix is used for decoding the dense hidden layer. As I am only briefly touching on how the model works here, I would recommend looking at [paper](https://arxiv.org/pdf/1301.3781.pdf) by Mikolov at Google who developed this method.
@@ -95,7 +112,7 @@ Wife|0.60
 ** Note: All of the results shown herein are actually reflective of pre-trained word embeddings that I found on [jhlau's github page](https://github.com/jhlau/doc2vec). I trained my own Doc2Vec model on the Wikipedia Corpus and achieved good results, but I saw about a 20% improvement in accuracy when using the pre-trained word embeddings. It appears that jhlau followed a similar process in training, albeit with slightly different hyperparameters. Given that my model took nearly two-days to train on a 32-core EC2 instance, I decided to rely on the pre-trained embeddings in the linked model for this project.
 
 
-## Claim Embeddings (more commonly known as document or paragraph embeddings)
+## Claim Embeddings (more commonly known as document or paragraph embeddings) <a name="claim_embeddings"></a>
 Once you understand the concept of word embeddings, the concept of claim embeddings is only one additional step. Here is the architecture of the `Doc2Vec` model.
 
 ![](images/doc2vec_model.png)
@@ -109,20 +126,19 @@ Example:
 * 1st claim embedding (Vague language): "a flow rate sensor __near__ one end of the vessel."
 * 2nd claim embedding (Concrete language): "a flow rate sensor __mounted (to)__ one end of the vessel."
 
-
-# Principal Component Analysis (Assessing Data Structure)
+# Principal Component Analysis (Assessing Data Structure) <a name="pca"></a>
 After having inferring document vectors for each claim in my test dataset, I was curious to verify what sort of structure my data had. I plotted the first three principal components (shown in the animation below). Frankly, I was quite surprised at the strong signal I observed.  While clearly not perfect, there is an easily observed distinction between the two classes of rejected claims (RED) and allowed claims (BLUE).  
 
-![](images/3d_principal_pca_doc2vec.gi)
+![](images/3d_principal_pca_doc2vec.gif)
 
-# Investigating Vectorized Features
+# Investigating Vectorized Features <a name="features"></a>
 A downside of using the vectorized claim data is that interpretability becomes much more difficult. For example, it is difficult to explain why a particular claim might be rejected or allowed using vectorized features. The following analysis is just a little bit of the work I did to try and understand what aspects of a claim were being encoded into the claim embeddings, and whether there were particular dimensions in the 300-dimensional 'claim space' that seemed important for classification.
 
 For this analysis, I only considered claims from a single art unit within the USPTO (art unit 2100). I initially looked at the mean value for the each of the 300  dimensions for each category, and found that for most features, the values were pretty similar, but that there were a handful of dimensions which appeared to be particularly helpful in distinguishing between accepted and rejected claims.
 
 ![](images/feature_comparison.png)
 
-## Cluster Analysis
+## Cluster Analysis <a name="cluster"></a>
 To better understand what features that were being extracted from the claims during vectorization, I did k-means clustering on the claim embeddings to group the claims into 30 clusters. Note, cluster numbers were re-ordered by the percentage of claims that were rejected in each cluster. As can be seen, there are a handful of clusters that were responsible for identifying most of the rejected claims.
 
 ![](images/30_clusters_count.png)
@@ -141,13 +157,13 @@ I also looked for some trends that I would have expected to see from my experien
 ![](images/30_clusters_word_count.png)
 
 
-# Random Forest Classifier
+# Random Forest Classifier <a name="randomforest"></a>
 Having vectorized my claim data, I chose to use a random forest classifier to provide the final prediction for whether a claim is accepted or rejected.  A simplified diagram of a random forest classifier is shown below.  In short, multiple decision trees are generated (I used 100 trees) and the majority voting of each of the trees is used to for the final prediction.  The trees are relatively uncorrelated and distinct because each decision node of the trees is made from a randomly selected subset of the 300 features.
 
 
 ![](images/random_forest_diagram.png)
 
-# Results
+# Results <a name="results"></a>
 The classifier was trained on my training dataset of ~120,000 claims and tested on the holdout test set of ~30,000 claims. The model has proven to be quite accurate with an overall accuracy of 95.9%.  More importantly 99% of the claims that were rejected under 101 were correctly identified.
 
 **Accuracy: 94.6%**
@@ -156,7 +172,7 @@ The classifier was trained on my training dataset of ~120,000 claims and tested 
 
 ![](images/confusion_matrix.png)
 
-# Use Cases
+## Use Cases <a name="use_cases"></a>
 There are a handful of uses cases for a model like this.  First, patent examiners at the USPTO could use this model to help identify claims that should be rejected.  In another instance, patent attorneys and patent agents could use a model as a second set of eyes when they are drafting patent claims. Finally, large companies that partner with outside law firms could use a tool like this to approve or reject claims that have been prepared by the law firm.
 
 Now you might be wondering how often these §  101 rejections are issued, and what the business value of a model like this would be. To investigate this, I looked at the rejections that were issued to Samsung in 2016.  In that year alone, they received 3,096 rejections under § 101.  In 496 of those rejections, the Office Action did not provide any other grounds for rejection, meaning that the application would have likely been granted right away had only more clear language been used.  As shown by the quick estimates below, Samsung could have saved quite a bit of money had they simply not approved any claims for filing that the model did not approve.  The true value is likely even higher than these back of the envelope estimates when you account for the savings in management of patent portfolios and the fact that patents that are allowed more quickly can also be enforced sooner.
