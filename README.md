@@ -33,14 +33,15 @@ Patent claims define the scope of what is being claimed as the invention. While 
 Below is a randomly selected application (
 [US9581591B2](https://patents.google.com/patent/US9581591B2/en?oq=+13%2f809%2c288)) from my dataset that shows a claim that was originally rejected under § 101, and then eventually modified to overcome the rejection. In this example, the Examiner argued that "the steps of inputting data, comparing data, and determining the outcome are considered to be an *idea of itself*."  While most claims are not lengthened this much to overcome a rejection, one can see that the allowed claim is much more specific, clarifying items that may not have been clear in the original claim.
 
-<dl>
-<style type="text/css">
+
+
+<!-- <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 3px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 3px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
 .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
+</style> -->
 <table class="tg">
   <tr>
     <th class="tg-lboi">Original Claim (Rejected under 35 USC § 101)</th>
@@ -51,7 +52,8 @@ Below is a randomly selected application (
     <td class="tg-0pky">&nbsp;&nbsp;&nbsp;&nbsp;1. A measuring system for determining infection in a patient who has undergone elective colorectal surgery, the system comprising:<br>&nbsp;&nbsp;&nbsp;&nbsp;a plasmon resonance-based biosensor array for plasmon resonance-based sensing of a plurality of different biological targets simultaneously, the plasmon resonance-based biosensor array comprising a transparent substrate having a surface bearing a plurality of assay spots, a system to flow a sample of bodily fluid of 200 μl or less over the biosensor array;<br>&nbsp;&nbsp;&nbsp;&nbsp;an illumination system to illuminate the biosensor array such that total internal reflection of light at a wavelength at or near a plasmon resonance results in dark-field scattered light modulated by binding of the biological targets, <br>&nbsp;&nbsp;&nbsp;&nbsp;an image sensor to capture an image of the dark-field scattered light from the biosensor array, a processor, coupled to the image sensor, to working memory, and to program memory storing control code to process image data from the image sensor such that data from the plurality of different biological targets is acquired within a time duration of less than 60 minutes; and<br>&nbsp;&nbsp;&nbsp;&nbsp;a user interface;<br>&nbsp;&nbsp;&nbsp;&nbsp;wherein the control code further comprises code to:<br>&nbsp;&nbsp;&nbsp;&nbsp;process the image data to determine patient complement cascade data from the sensed plurality of different biological targets, the complement cascade data comprising data representing levels of a set of complement cascade markers in the patient at a succession of time intervals following the surgery, <br>&nbsp;&nbsp;&nbsp;&nbsp;wherein the patient complement cascade data defines a patient recovery pathway representing an evolution over time of a complement cascade in the patient, and <br>&nbsp;&nbsp;&nbsp;&nbsp;wherein the set of complement cascade markers comprises at least proteins C3 and C4 and one or more complement fragment biomarkers derived therefrom;<br>&nbsp;&nbsp;&nbsp;&nbsp;compensate for dilution of levels of the complement cascade markers using at least one of the complement fragment biomarkers;<br>&nbsp;&nbsp;&nbsp;&nbsp;compensate levels of the complement cascade markers for a background or pre-existing activation of the complement cascade in the patient;<br>&nbsp;&nbsp;&nbsp;&nbsp;repeatedly measure levels of the set of complement cascade markers over time to define a set of at least two curves representing evolution over time of levels of the proteins C3 and C4 or complement fragment biomarkers derived therefrom;<br>&nbsp;&nbsp;&nbsp;&nbsp;determine whether the patient is infected by comparing a fit of the at least two curves to corresponding curves representing an evolution over time of a complement cascade in a plurality of patients; and <br>&nbsp;&nbsp;&nbsp;&nbsp;output a result of the comparing to the user interface to enable a user to determine infection in a patient who has undergone elective colorectal surgery.</td>
   </tr>
 </table>
-<dl>
+
+
 
 # Data <a name="data"></a>
 In late 2017, Google began hosting [Public Patent datasets](https://cloud.google.com/blog/products/gcp/google-patents-public-datasets-connecting-public-paid-and-private-patent-data) on BigQuery. In total, there are 19 datasets, which have been collected by various organizations.  These datasets can be queried using the  [BigQuery API](https://cloud.google.com/bigquery/docs/reference/libraries#client-libraries-install-python) for python. I collected Office Action data providing information on patent rejections from USPTO Digital Services & Big Data portfolio, and I pulled claim text from a dataset provided by IFI CLAIMS Patent Services. Since examination under § 101 has been evolving, I decided to limit my dataset to patent applications granted between 2015 and mid-2017.
