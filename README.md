@@ -1,8 +1,6 @@
-prediction
 
 ![](images/header.png)
 
-**JOHN HERR | Galvanize Data Science Immersive | Spring 2019**
 
 ## Table of Contents
 1. [Background & Motivation](#background)
@@ -30,8 +28,7 @@ In my previous career as a patent agent, I wrote and prosecuted patent applicati
 ## Example Claims <a name="claims"></a>
 Patent claims define the scope of what is being claimed as the invention. While other aspects of a patent may describe the invention, the language used in a claim is what provides a patent owner protection of their invention. If a party infringes on a patent claim, the patent owner can seek infringement damages from the party and force the party from further infringement of the patent.
 
-Below is a randomly selected application (
-[US9581591B2](https://patents.google.com/patent/US9581591B2/en?oq=+13%2f809%2c288)) from my dataset that shows a claim that was originally rejected under § 101, and then eventually modified to overcome the rejection. In this example, the Examiner argued that "the steps of inputting data, comparing data, and determining the outcome are considered to be an *idea of itself*."  While most claims are not lengthened this much to overcome a rejection, one can see that the allowed claim is much more specific, clarifying items that may not have been clear in the original claim.
+Below is a randomly selected application ([US9581591B2](https://patents.google.com/patent/US9581591B2/en?oq=+13%2f809%2c288)) from my dataset that shows a claim that was originally rejected under § 101, and then eventually modified to overcome the rejection. In this example, the Examiner argued that "the steps of inputting data, comparing data, and determining the outcome are considered to be an *idea of itself*."  While most claims are not lengthened this much to overcome a rejection, one can see that the allowed claim is much more specific, clarifying items that may not have been clear in the original claim.
 
 
 
