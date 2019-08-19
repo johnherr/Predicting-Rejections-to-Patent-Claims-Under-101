@@ -1,8 +1,3 @@
----
-title: This is my title
-layout: post
----
-
 ## Table of Contents
 1. [Background & Motivation](#background)
     - [Example Claims](#claims)
