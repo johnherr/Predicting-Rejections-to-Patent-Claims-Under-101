@@ -1,3 +1,4 @@
 theme: jekyll-theme-cayman
-title: Predicting Patent Rejections under 35 U.S. Code § 101
+title: Predicting Patent Rejections
+description: [under 35 U.S. Code § 101 using Natural Language Processing]
 image: images/PCA_2components.png
