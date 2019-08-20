@@ -21,6 +21,8 @@ In my previous career as a patent agent, I wrote and prosecuted patent applicati
 
 **The goal of this project was to see if I could utilize machine learning techniques to predict whether a patent claim would be rejected under 35 United States Code § 101, a section of the law that provides criteria for patent-eligible subject matter.**  The code specifies that patents must fall under one of 4 categories: **(1)** a process, **(2)** a machine, **(3)** an (article of) manufacture, **(4)** or a composition of matter. The code further specifies that patents cannot be filed on laws of nature, natural phenomena, or abstract ideas. In recent years the Patent Office has struggled to clearly define criteria for determining whether claims are directed to an abstract idea. Conflicting court decisions have it difficult for practitioners to know what language will be deemed acceptable. Applicants often find themselves at the mercy of an examiner who is making the determination whether a claim is patent-eligible under 101. If a claim can be sufficiently narrowed by using precise language, a patent examiner may become comfortable in allowing the application.
 
+![](images/header2.png)
+
 ## Example Claims <a name="claims"></a>
 Patent claims define the scope of what is being claimed as the invention. While other aspects of a patent may describe the invention, the language used in a claim is what provides a patent owner protection of their invention. If a party infringes on a patent claim, the patent owner can seek infringement damages from the party and force the party from further infringement of the patent.
 
