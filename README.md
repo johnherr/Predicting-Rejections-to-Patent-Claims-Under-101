@@ -1,5 +1,5 @@
 [![](images/button.png)](https://johnherr.github.io)
-
+ 
 ## Table of Contents
 1. [Background & Motivation](#background)
     - [Example Claims](#claims)
